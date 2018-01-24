@@ -3,12 +3,12 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-	var BASE_URL = 'http://objects.fi-1.nebulacloud.fi/swift/v1/rh2017ondemand/';
+	var BASE_URL = 'https://objects.fi-1.nebulacloud.fi/swift/v1/rh2017ondemand/';
 	$(document).ready(function(){
         //$("#div1").load("https://cors.io/?" + BASE_URL, function(responseTxt, statusTxt, xhr){
         $("#div1").load(BASE_URL, function(responseTxt, statusTxt, xhr){
             if(statusTxt == "success") {
-                
+
                 //alert("External content loaded successfully!" + responseTxt);
                 episodeList = $("<ol></ol>");
                 episodes = responseTxt.split("\n");
