@@ -5,21 +5,25 @@
 <script>
 	var BASE_URL = 'http://objects.fi-1.nebulacloud.fi/swift/v1/rh2017ondemand/';
 	$(document).ready(function(){
-        $("#div1").load("https://cors.io/?" + BASE_URL, function(responseTxt, statusTxt, xhr){
-            if(statusTxt == "success")
+        //$("#div1").load("https://cors.io/?" + BASE_URL, function(responseTxt, statusTxt, xhr){
+        $("#div1").load(BASE_URL, function(responseTxt, statusTxt, xhr){
+            if(statusTxt == "success") {
+                
                 //alert("External content loaded successfully!" + responseTxt);
-            	episodeList = $("<ol></ol>");
-            	episodes = responseTxt.split("\n");
-            	$.each(episodes, function() {
-            		//alert(this);
-            		if (this.indexOf("okel") > -1) {
-            			linkText = BASE_URL + this;
-            			episodeList.append($('<li></li>').html("<a href=" + linkText + ">" + this + "</a>"));
-            		}
-            	});
-            	$("#div1").html(episodeList);
-            if(statusTxt == "error")
+                episodeList = $("<ol></ol>");
+                episodes = responseTxt.split("\n");
+                $.each(episodes, function() {
+                    //alert(this);
+                    if (this.indexOf("okel") > -1) {
+                        linkText = BASE_URL + this;
+                        episodeList.append($('<li></li>').html("<a href=" + linkText + ">" + this + "</a>"));
+                    }
+                });
+                $("#div1").html(episodeList);
+            }
+            if(statusTxt == "error") {
                 alert("Error: " + xhr.status + ": " + xhr.statusText + "--" + BASE_URL);
+            }
         });
 	});
 </script>
