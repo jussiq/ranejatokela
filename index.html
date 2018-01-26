@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-	var BASE_URL = 'https://objects.fi-1.nebulacloud.fi/swift/v1/rh2017ondemand/';
-	$(document).ready(function(){
-        $("#div1").load("https://cors.io/?" + BASE_URL, function(responseTxt, statusTxt, xhr){
-        //$("#div1").load(BASE_URL, function(responseTxt, statusTxt, xhr){
-            if(statusTxt == "success") {
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    	var BASE_URL = 'https://objects.fi-1.nebulacloud.fi/swift/v1/rh2017ondemand/';
+    	$(document).ready(function(){
+            $("#div1").load("https://cors.io/?" + BASE_URL, function(responseTxt, statusTxt, xhr){
+            //$("#div1").load(BASE_URL, function(responseTxt, statusTxt, xhr){
+                if(statusTxt == "success") {
 
-                //alert("External content loaded successfully!" + responseTxt);
-                episodeList = $("<ol></ol>");
-                episodes = responseTxt.split("\n").reverse();
-                $.each(episodes, function() {
-                    //alert(this);
-                    if (this.toLowerCase().indexOf("okel") > -1) {
-                        var linkText = this.split('_')[0];//20180126
-                        linkText = linkText.substring(0,4)+'-'+linkText.substring(4,6)+'-'+linkText.substring(6,8);
-                        linkUrl = BASE_URL + this;
-                        episodeList.append($('<li></li>').html("<a href=" + linkUrl + ">" + linkText + "</a>"));
-                    }
-                });
-                $("#div1").html(episodeList);
-            }
-            if(statusTxt == "error") {
-                alert("Error: " + xhr.status + ": " + xhr.statusText + "--" + BASE_URL);
-            }
-        });
-	});
-</script>
+                    //alert("External content loaded successfully!" + responseTxt);
+                    episodeList = $("<ol></ol>");
+                    episodes = responseTxt.split("\n").reverse();
+                    $.each(episodes, function() {
+                        //alert(this);
+                        if (this.toLowerCase().indexOf("okel") > -1) {
+                            var linkText = this.split('_')[0];//20180126
+                            linkText = linkText.substring(0,4)+'-'+linkText.substring(4,6)+'-'+linkText.substring(6,8);
+                            linkUrl = BASE_URL + this;
+                            episodeList.append($('<li></li>').html("<a href=" + linkUrl + ">" + linkText + "</a>"));
+                        }
+                    });
+                    $("#div1").html(episodeList);
+                }
+                if(statusTxt == "error") {
+                    alert("Error: " + xhr.status + ": " + xhr.statusText + "--" + BASE_URL);
+                }
+            });
+    	});
+    </script>
 </head>
 <body>
-
-<h2>Ranet ja Tokelat</h2>
-<div id="div1"></div>
-
+    <h2>Ranet ja Tokelat</h2>
+    <div id="div1"></div>
 </body>
 </html>
