@@ -11,12 +11,14 @@
 
                 //alert("External content loaded successfully!" + responseTxt);
                 episodeList = $("<ol></ol>");
-                episodes = responseTxt.split("\n");
+                episodes = responseTxt.split("\n").reverse();
                 $.each(episodes, function() {
                     //alert(this);
                     if (this.indexOf("okel") > -1) {
-                        linkText = BASE_URL + this;
-                        episodeList.append($('<li></li>').html("<a href=" + linkText + ">" + this + "</a>"));
+                        var linkText = this.split('_')[0];//20180126
+                        linkText = linkText.substring(0,4)+'-'+linkText.substring(4,6)+'-'+linkText.substring(6,8);
+                        linkUrl = BASE_URL + this;
+                        episodeList.append($('<li></li>').html("<a href=" + linkUrl + ">" + linkText + "</a>"));
                     }
                 });
                 $("#div1").html(episodeList);
