@@ -14,7 +14,7 @@
                 episodes = responseTxt.split("\n").reverse();
                 $.each(episodes, function() {
                     //alert(this);
-                    if (this.indexOf("okel") > -1) {
+                    if (this.toLowerCase().indexOf("okel") > -1) {
                         var linkText = this.split('_')[0];//20180126
                         linkText = linkText.substring(0,4)+'-'+linkText.substring(4,6)+'-'+linkText.substring(6,8);
                         linkUrl = BASE_URL + this;
